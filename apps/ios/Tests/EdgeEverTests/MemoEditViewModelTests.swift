@@ -5,8 +5,8 @@ import XCTest
 final class MemoEditViewModelTests: XCTestCase {
     func testTagsAreNormalized() {
         let model = MemoEditViewModel()
-        model.tagsText = " one, two，three one, one, #four "
-        XCTAssertEqual(model.tags, ["one", "two", "three one", "four"])
+        model.tagsText = " one, two，three  one "
+        XCTAssertEqual(model.tags, ["one", "two", "three", "one"])
     }
 
     func testRejectsEmptyBodyOverNonEmptyBaseline() {

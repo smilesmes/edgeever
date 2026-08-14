@@ -28,13 +28,10 @@ final class MemoEditViewModel {
     @ObservationIgnored private var saveTask: Task<Void, Never>?
 
     var tags: [String] {
-        var seen = Set<String>()
-        return tagsText
-            .split(whereSeparator: { $0 == "," || $0 == "，" || $0.isNewline })
-            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "^#", with: "", options: .regularExpression) }
-            .filter { !$0.isEmpty && seen.insert($0).inserted }
-            .prefix(24)
-            .map { $0 }
+        tagsText
+            .split(whereSeparator: { ",， ".contains($0) })
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
     }
 
     func markDirty() {

@@ -59,6 +59,6 @@ export const formatDateTime = (value: string) =>
 
 export const parseTagsText = (value: string) =>
   value
-    .split(/[,，\n]+/)
+    .split(/[,，\s]+/)
     .map((tag) => tag.trim().replace(/^#/, ""))
     .filter(Boolean);
